@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "SectionModule";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <h3 class="page-title"> Cataegory </h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a class="btn btn-primary" data-target="#myModal" data-toggle="modal" id="OpenPopup"><i class="mdi mdi-file-check btn-icon-prepend"></i></a>
+            </li>
+        </ol>
+    </nav>
+</div>
+<div class="row">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table" id="tblNavigation" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th> Action </th>
+                                <th> Navigation Name </th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblNavigation_body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myModal" class="modal fade rounded-3 w-100" data-backdrop="static">
+    <div class="modal-dialog modaldialog-centered rounded-3 ModalBackgroundCOlor">
+        <div class="row justify-content-end">
+            <div class="close pr-3">
+                <span aria-hidden="true" id="btnClose" onclick="ModelClose();">&times;</span>
+            </div>
+        </div>
+        <h4 class="modal-title headertext ml-4" id="header">Add Navigation</h4>
+        <div class="modal-body">
+            <div class="wrap-modal-slider">
+                <div class="your-class">
+                    <div class="row">
+                        <input type="hidden" id="lblNaviId">
+                        <div class="col-md-3">
+                            <label for="Navigation" class="headertext">Navigation</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" id="txtNavigation" class="form-controls" name="navigation" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modalfooter">
+            <button type="submit" id="btnSave" class="btn btn-primary" onclick="CreateNavigation();">Save </button>
+            <button type="submit" id="btnUpdate" style="display:none;" class="btn btn-primary" onclick="UpdateNavi();">Update</button>
+            <button type="button" id="btnClose" onclick="ModelClose();" class="btn btn-secondary">Close</button>
+        </div>
+    </div>
+</div>
+<script src="~/Areas/Admin/NavigationJs/Navigation.js"></script>

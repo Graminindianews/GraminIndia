@@ -1,0 +1,217 @@
+﻿
+@{
+    ViewBag.Title = "AddNews";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="page-header">
+    <h3 class="page-title"> Add News </h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a class="btn btn-primary" data-target="#myModal" data-toggle="modal" id="OpenPopup"><i class="mdi mdi-file-check btn-icon-prepend"></i></a>
+            </li>
+        </ol>
+    </nav>
+</div>
+<div class="row">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table" id="tblNewsDetails" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th> Action </th>
+                                <th> View</th>
+                                <th> News Title </th>
+                                <th> Editor Name </th>
+                                <th> Inserted Date </th>
+                                <th> Navigation </th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblNewsDetails_body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="myModal" class="modal fade rounded-3 w-100" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg modaldialog-centered rounded-3 mt-4 ModalBackgroundCOlor">
+        <div class="row justify-content-end">
+            <div class="close pr-3">
+                <span aria-hidden="true" id="btnClose" onclick="ModelClose();">&times;</span>
+            </div>
+        </div>
+        <h4 class="modal-title headertext ml-4" id="header">Add News</h4>
+        <hr />
+        <div class="modal-body p-0">
+            <div class="wrap-modal-slider">
+                <form class="row forms-sample">
+                    <div class="col-sm-4 form-group">
+                        <label for="category" class="headertext">Category</label>
+                        <select class="form-controles" id="ddlNewsCategory">
+                            <option value="0">- Select -</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-8 form-group">
+                        <label for="newstitle" class="headertext">News Tital</label>
+                        <input type="text" class="form-controles" id="txtNewsTitle">
+                    </div>
+                    <div class="col-12 form-group">
+                        <label for="newsheading" class="headertext">News Heading</label>
+                        <input type="text" class="form-controles" id="txtNewsHeading" aria-label="Heading News">
+                    </div>
+                    <div class="col-12 form-group">
+                        <label for="newssectionone" class="headertext">News Details Section 1</label>
+                        <textarea class="form-controles" id="txtNewsSectionOne" rows="6"></textarea>
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        <label for="uploadphoto" class="headertext">Image 1</label>
+                        <input type="file" name="img[]" id="Image1Id" class="file-upload-default">
+                        <div class="input-group col-xs-12">
+                            <input type="text" class="form-controles file-upload-info Newswthimg" disabled placeholder="Image 1">
+                            <span class="input-group-append">
+                                <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 form-group">
+                        <img id="imgPreview" class="PreImage" alt="pic" width="75" />
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label for="videourl" class="headertext">Video Url</label>
+                        <input type="text" class="form-controles" id="txtVideoUrls">
+                    </div>
+                    <div class="col-12 form-group">
+                        <label for="newssectiontwo" class="headertext">News Detail Section 2</label>
+                        <textarea class="form-controles" id="txtNewsSectionTwo" rows="6"></textarea>
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        <label for="img2" class="headertext">Image 2</label>
+                        <input type="file" name="img[]" id="Image2Id" class="file-upload-default">
+                        <div class="input-group col-xs-12">
+                            <input type="text" class="form-controles file-upload-info Newswthimg" disabled placeholder="Image 2">
+                            <span class="input-group-append">
+                                <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 form-group">
+                        <img id="imgPreview1" class="PreImage" alt="pic" width="75" />
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        <label for="img3" class="headertext">Image 3</label>
+                        <input type="file" name="img[]" id="Image3Id" class="file-upload-default">
+                        <div class="input-group col-xs-12">
+                            <input type="text" class="form-controles file-upload-info Newswthimg" disabled placeholder="Image 3">
+                            <span class="input-group-append">
+                                <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 form-group">
+                        <img id="imgPreview2" class="PreImage" alt="pic" width="75" />
+                    </div>
+                    <div class="col-12 form-group">
+                        <label for="tagdetails" class="headertext">Tag Details</label>
+                        <input type="text" class="form-controles form-control-lg" id="txtTagDetails" aria-label="Tag Details">
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        <label for="editors" class="headertext">Editor</label>
+                        <input type="text" class="form-controles" id="txtNewsEditors" disabled="">
+                    </div>
+                    <div class="col-sm-4 form-check mt-4 form-check-success">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" id="CheckBoxBannerId" checked> Show on Banner
+                        </label>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modalfooter">
+            <button type="submit" id="btnSave" class="btn btn-primary mr-2" onclick="AddNews()">Save </button>
+            <button type="button" id="btnClose" onclick="ModelClose();" class="btn btn-danger">Close</button>
+        </div>
+    </div>
+</div>
+@*----------------------For View the News details-----------------------------------------------*@
+<div id="myModalView" class="modal fade rounded-3 w-100" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg modaldialog-centered rounded-3 mt-4 ModalBackgroundCOlor">
+        <div class="row justify-content-end">
+            <div class="close pr-3">
+                <span aria-hidden="true" id="btnClose" onclick="ViewModelClose();">&times;</span>
+            </div>
+        </div>
+        <h4 class="modal-title headertext ml-4" id="header">View News</h4>
+        <hr />
+        <div class="modal-body p-0">
+            <div class="wrap-modal-slider">
+                <form class="row forms-sample">
+                    <div class="col-sm-4 form-group">
+                        <label for="category" class="headertext">Category</label>
+                        <select class="form-controles" id="ddlNewsCategory">
+                            <option value="0">- Select -</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-8 form-group">
+                        <label for="newstitle" class="headertext">News Tital</label>
+                        <input type="text" class="form-controles" id="txtNewsTitleView" disabled="">
+                    </div>
+                    <div class="col-12 form-group">
+                        <label for="newsheading" class="headertext">News Heading</label>
+                        <input type="text" class="form-controles" id="txtNewsHeadingView" aria-label="Heading News" disabled="">
+                    </div>
+                    <div class="col-12 form-group">
+                        <label for="newssectionone" class="headertext">News Details Section 1</label>
+                        <textarea class="form-controles" id="txtNewsSectionOneView" rows="4" style="overflow: auto;" disabled=""></textarea>
+                    </div>
+                    <div class="col-sm-2 form-group">
+                        <label for="uploadphoto" class="headertext">Image 1</label>
+                        <img id="imgView1" alt="Image One" src="~/Upload/UploadNews/" width="100" height="100" />
+                    </div>
+                    <div class="col-sm-2 form-group">
+                        <label for="uploadphoto" class="headertext">Image 2</label>
+                        <img id="imgView2" alt="Image One" src="~/Upload/UploadNews/" width="100" height="100" />
+                    </div>
+                    <div class="col-sm-2 form-group">
+                        <label for="uploadphoto" class="headertext">Image 3</label>
+                        <img id="imgView3" alt="Image One" src="~/Upload/UploadNews/" width="100" height="100" />
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label for="videourl" class="headertext">Video Url</label>
+                        <input type="text" class="form-controles" id="txtVideoUrlsView" disabled="">
+                    </div>
+                    <div class="col-12 form-group">
+                        <label for="newssectiontwo" class="headertext">News Detail Section 2</label>
+                        <textarea class="form-controles" id="txtNewsSectionTwoView" rows="4" style="overflow:auto;" disabled></textarea>
+                    </div>
+                    <div class="col-12 form-group">
+                        <label for="tagdetails" class="headertext">Tag Details</label>
+                        <input type="text" class="form-controles form-control-lg" id="txtTagDetailsView" aria-label="Tag Details" disabled>
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        <label for="editors" class="headertext">Editor</label>
+                        <input type="text" class="form-controles" id="txtNewsEditorsView" disabled="">
+                    </div>
+                    <div class="col-sm-4 form-check mt-4 form-check-success">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" id="CheckBoxBannerIdView" disabled> Show on Banner
+                        </label>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modalfooter">
+            <button type="button" id="btnClose" onclick="ViewModelClose();" class="btn btn-danger">Close</button>
+        </div>
+    </div>
+</div>
+
+<script src="~/Areas/Admin/NavigationJs/Addnews.js"></script>
+<script src="~/Areas/Admin/NavigationJs/CommonJs.js"></script>
+<script src="~/Areas/Admin/lib/ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('txtNewsSectionOne');
+    CKEDITOR.replace('txtNewsSectionTwo');
+</script>

@@ -1,0 +1,214 @@
+﻿
+@{
+    ViewBag.Title = "UserRegistration";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <h3 class="page-title"> User Registration </h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a class="btn btn-primary" data-target="#myModal" data-toggle="modal" id="OpenPopup"><i class="mdi mdi-file-check btn-icon-prepend"></i></a>
+            </li>
+        </ol>
+    </nav>
+</div>
+<div class="row">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table" id="tblUserRegistration" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th> Action </th>
+                                <th> UserName </th>
+                                <th> Employee Code </th>
+                                <th> Editor Name </th>
+                                <th> Editor Email </th>
+                                <th> Editor Phone </th>
+                                <th> Designation</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblUserRegistration_body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="hdnUserId">
+@*-------------------------------------User Regustration---------------------------------------------*@
+<div id="myModal" class="modal fade rounded-3 w-100" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modaldialog-centered rounded-3 ModalBackgroundCOlor">
+        <div class="row justify-content-end">
+            <div class="close pr-3">
+                <span aria-hidden="true" id="btnClose" onclick="ModelClose();">&times;</span>
+            </div>
+        </div>
+        <h4 class="modal-title headertext ml-4" id="header">Editor Registration</h4>
+        <div class="modal-body p-0">
+            <div class="wrap-modal-slider">
+                <div class="your-class mt-3">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="Email" class="headertext">Email</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" id="txtEmail" class="form-controls" name="Email" />
+                        </div>
+                    </div>
+                </div>
+                <div class="your-class mt-3">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="Mobile" class="headertext">Mobile</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" id="txtMobile" class="form-controls" name="Mobile" />
+                        </div>
+                    </div>
+                </div>
+                <div class="your-class mt-3">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="Password" class="headertext">Password</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="password" id="txtpassword" class="form-controls" name="Password" />
+                        </div>
+                    </div>
+                </div>
+                <div class="your-class mt-3">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="password" class="headertext">Confirm Password</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="password" id="txtConfirmPassword" class="form-controls" name="CPassword" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modalfooter">
+            <button type="submit" id="btnSave" class="btn btn-primary" onclick="SaveUserRegistration();">Save </button>
+            <button type="button" id="btnClose" onclick="ModelClose();" class="btn btn-secondary">Close</button>
+        </div>
+    </div>
+</div>
+@*-------------------------------------User Regustration Details---------------------------------------------*@
+<div id="myModalSecond" class="modal fade rounded-3 w-100 pl-7" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg modaldialog-centereds rounded-3 ModalBackgroundCOlor">
+        <div class="row justify-content-end">
+            <div class="close pr-3">
+                <span aria-hidden="true" id="btnClose" onclick="ModelCloseSecond();">&times;</span>
+            </div>
+        </div>
+        <h4 class="modal-title headertext ml-4" id="header">Edit Registration</h4>
+        <div class="modal-body p-0">
+            <div class="wrap-modal-slider">
+                <div class="your-class mt-3">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label for="salutation" class="headertext">Salutation</label>
+                            <select class="form-controls" id="ddlSalutation">
+                                <option value="0">- Select -</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="firstname" class="headertext">First Name</label>
+                            <input type="text" id="txtFirstName" class="form-controls" name="First Name" />
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="middlename" class="headertext">Middle Name</label>
+                            <input type="text" id="txtMiddleName" class="form-controls" name="Middle Name" />
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="lastname" class="headertext">Last Name</label>
+                            <input type="text" id="txtLastName" class="form-controls" name="Middle Name" />
+                        </div>
+                    </div>
+                </div>
+                <div class="your-class mt-3">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label for="empcode" class="headertext">Emp Code</label>
+                            <input type="text" id="txtEmpCode" class="form-controls" name="Emp Code" disabled="" />
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="Mobile" class="headertext">Mobile</label>
+                            <input type="text" id="txtEditMobile" class="form-controls" name="Mobile" disabled="" />
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="email" class="headertext">Email</label>
+                            <input type="text" id="txtEditEmail" class="form-controls" name="Email" disabled="" />
+                        </div>
+                    </div>
+                </div>
+                <div><hr /></div>
+                <div class="your-class mt-3">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label for="Designation" class="headertext">Designation</label>
+                            <select class="form-controls" id="ddldesignation">
+                                <option value="0">- Select -</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="country" class="headertext">Country</label>
+                            <select class="form-controls" id="ddlCountry" disabled="">
+                                <option value="0">- Select -</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="state" class="headertext">State</label>
+                            <select class="form-controls" id="ddlState">
+                                <option value="0">- Select -</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="your-class mt-3">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label for="district" class="headertext">District</label>
+                            <select class="form-controls" id="ddldistrict">
+                                <option value="0">- Select -</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4 form-group pt-2">
+                            <label for="uploadphoto" class="headertext">Upload Photo</label>
+                            <input type="file" name="img[]" id="PicUpload" class="file-upload-default" onchange="loadFile(event)">
+                            <div class="input-group col-xs-12">
+                                <input type="text" class="form-controls file-upload-info wthimg" disabled placeholder="Upload Image">
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 form-group pt-2">
+                            <img id="output" width="50" height="50" class="mt-4" />
+                            <script>
+                                var loadFile = function (event) {
+                                    var output = document.getElementById('output');
+                                    output.src = URL.createObjectURL(event.target.files[0]);
+                                    output.onload = function () {
+                                        URL.revokeObjectURL(output.src)
+                                    }
+                                };
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modalfooter">
+            <button type="submit" id="btnUpdate" class="btn btn-primary" onclick="UpdateUser();">Update</button>
+            <button type="button" id="btnClose" onclick="ModelCloseSecond();" class="btn btn-secondary">Close</button>
+        </div>
+    </div>
+</div>
+<script src="~/Areas/Admin/NavigationJs/UserRegistration.js"></script>
+<script src="~/Areas/Admin/NavigationJs/CommonJs.js"></script>
