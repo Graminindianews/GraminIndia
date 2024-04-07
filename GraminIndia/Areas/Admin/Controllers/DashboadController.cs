@@ -9,7 +9,6 @@ namespace GraminIndia.Areas.Admin.Controllers
 {
     public class DashboadController : Controller
     {
-        // GET: Admin/Dashboad
         public ActionResult Dashboard()
         {
             if (Session["AdminLoginId"] != null)
