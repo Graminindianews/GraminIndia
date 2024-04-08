@@ -81,12 +81,8 @@ namespace Website.Helper
                 }
                 temp = t;
                 randomCode += allCharArray[t];
-
             }
-
-
             return randomCode;
-
         }
         public static string EncryptPwd(string clearText)
         {

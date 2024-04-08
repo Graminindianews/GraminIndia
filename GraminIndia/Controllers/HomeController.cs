@@ -9,6 +9,7 @@ namespace GraminIndia.Controllers
 {
     public class HomeController : Controller
     {
+        [Authenticate]
         public ActionResult Index()
         {
             return View();
